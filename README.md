@@ -1,6 +1,6 @@
 # ByteBank 🏧
 
-Banco digital, onde você terá o histórico de todas as transições, controle seu dinheiro na palma da sua mão.
+Digital bank, where you will have the history of all transactions and control your money in the palm of your hand.
 
 #### Feel free to explore, and if you have any questions, I'm available 24/7 for you 🫵
 
