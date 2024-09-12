@@ -1,8 +1,8 @@
-import { render, screen } from '@testing-library/react';
+const { render, screen } = require('@testing-library/react');
 import Cabecalho from './index';
 
-test('Deve renderizar o nome do usúario logado', () => {
+test('Deve renderizar o nome do usuário logado', () => {
   render(<Cabecalho />);
-  const nomeUsuario = screen.getByText('Vinicius Ribeiro');
+  const nomeUsuario = screen.getByText('Joana Fonseca Gomes');
   expect(nomeUsuario).toBeInTheDocument();
 });

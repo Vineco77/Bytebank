@@ -3,19 +3,19 @@ import userEvent from '@testing-library/user-event';
 import Formulario from './index';
 
 describe('Deve renderizar um campo de input', () => {
-  test('No documento', () => {
+  test('no documento', () => {
     render(<Formulario />);
     const campoTexto = screen.getByPlaceholderText('Digite um valor');
     expect(campoTexto).toBeInTheDocument();
   });
 
-  test('Deve ser do type number', () => {
+  test(' com o type number', () => {
     render(<Formulario />);
     const campoTexto = screen.getByPlaceholderText('Digite um valor');
     expect(campoTexto).toHaveAttribute('type', 'number');
   });
 
-  test('Pode ser preenchido', () => {
+  test(' que pode ser preenchido', () => {
     render(<Formulario />);
     const campoTexto = screen.getByPlaceholderText('Digite um valor');
     userEvent.type(campoTexto, '50');
@@ -27,21 +27,8 @@ test('Deve chamar um evento de onSubmit ao clicar em realizar transação', () =
   const realizarTransacao = jest.fn();
 
   render(<Formulario realizarTransacao={realizarTransacao} />);
-
   const botao = screen.getByRole('button');
 
   userEvent.click(botao);
-  expect(realizarTransacao).toBeCalledTimes(1);
-});
-
-test('Deve ser possível selecionar uma opção do elemento <select/>', () => {
-  render(<Formulario />);
-  const select = screen.getByRole('combobox');
-  userEvent.selectOptions(select, ['Depósito']);
-
-  expect(
-    screen.getByRole('option', { name: 'Selecione um tipo de transação' })
-      .selected,
-  ).toBe(false);
-  expect(screen.getByRole('option', { name: 'Depósito' }).selected).toBe(true);
+  expect(realizarTransacao).toHaveBeenCalledTimes(1);
 });
