@@ -1,7 +1,5 @@
 # ByteBank 🏧
 
-#### Ajustar CSS positions
-
 Digital bank, where you will have the history of all transactions and control your money in the palm of your hand.
 
 #### Feel free to explore, and if you have any questions, I'm available 24/7 for you 🫵
@@ -70,4 +68,46 @@ Digital bank, where you will have the history of all transactions and control yo
 
 - How to write better tests with good practices and clear language;
 
-- How to protect your production application from untested code that has been added to your app.
+- How to protect your production application from untested code that has been added to your app;
+
+- How to create tests to verify if everything is correct with the application's routes;
+
+- How to use BrowserRouter and MemoryRouter to work with React routes in the testing environment;
+
+- That it’s possible to test hooks from react-router-dom to test components that depend on them;
+
+- How to write integration tests between two components of the application;
+
+- How to write integration tests between the pages of the application;
+
+- More about querying elements on the screen;
+
+- Verifying if one element contains another element inside it using .toContainHTML();
+
+- Creating integration tests between the Frontend and Backend;
+
+- Creating tests for API requests;
+
+- Using mocks to mock the return of an API;
+
+- Creating tests for successful API requests;
+
+- Creating tests for failed API requests;
+
+- Using renderHook to render hooks outside of React components;
+
+- Testing React hooks using renderHook;
+
+- Testing custom hooks;
+
+- Using act to handle state changes in tests;
+
+- What test coverage is;
+
+- How to generate a test coverage report;
+
+- What each column in the test coverage report means;
+
+- How to add a minimum coverage threshold for your tests;
+
+- How to create a GitHub action to allow pull requests to the main branch only if it meets the minimum coverage threshold.
