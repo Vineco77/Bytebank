@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 import { buscaTransacoes } from '../services/transacoes';
 import useListaTransacoes from './useListaTransacoes';
 
@@ -14,7 +14,7 @@ const mockTransacao = [
   },
 ];
 
-describe('hooks/useListaTransacoes', () => {
+describe('hooks/useListaTransacoes.js', () => {
   test('Deve retornar uma lista de transações e uma função que a atualiza', async () => {
     buscaTransacoes.mockImplementation(() => mockTransacao);
 
