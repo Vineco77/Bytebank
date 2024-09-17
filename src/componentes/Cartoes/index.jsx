@@ -8,8 +8,8 @@ export default function Cartoes() {
     <section className="container">
       <div className="detalhe__superior" />
       <div className={estilos.wrapper}>
-        <h2 data-test='titulo-cartoes'>Meus cartões</h2>
-        <p>Cartão físico</p>
+        <h2 data-test="titulo-cartoes">Meus cartões</h2>
+        <p data-test="cartao-fisico">Cartão físico</p>
         <div className={estilos.cartao}>
           <img src={cartaoFisico} alt="Cartão físico" />
           <div className={estilos.funcoes}>
