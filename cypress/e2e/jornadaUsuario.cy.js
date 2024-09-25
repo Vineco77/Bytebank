@@ -1,39 +1,80 @@
-describe('Jornadas de usuário', () => {
-  it('Deve permitir que a pessoa usuária acesse a aplicação, realize uma transação e faça um logout', () => {
-    cy.visit('/');
-    cy.getByDataTest('botao-login').click();
-    cy.getByDataTest('email-input').type('vinii.viniciusribeiro@gmail.com');
-    cy.getByDataTest('senha-input').type('Açucar77*');
-    cy.getByDataTest('botao-enviar').click();
+describe('Realizando transações', () => {
+  const novaTransacao = {
+    tipoTransacao: 'Depósito',
+    valor: '100',
+  };
 
-    cy.location('pathname').should('eq', '/home');
+  it('Deve permitir que usuário acesse a aplicação, realize transações e faça um logout', () => {
+    cy.fixture('dadosUsuario').as('usuario');
+    cy.get('@usuario').then((usuario) => {
+      // Realiza login na aplicação
+      cy.login(usuario.email, usuario.senha);
 
-    cy.getByDataTest('select-opcoes').select('Transferência');
-    cy.getByDataTest('form-input').type('80');
-    cy.getByDataTest('realiza-transacao').click();
+      // Visita a página home e verifica a url correspondente
+      cy.visit('/home');
+      cy.url().should('include', '/home');
 
-    cy.getByDataTest('lista-transacoes').find('li').last().contains('- R$ 80');
+      // Verifica se o nome do usuário logado é visível
+      cy.contains(usuario.nome).should('be.visible');
 
-    cy.getByDataTest('botao-sair').click();
-    cy.location('pathname').should('eq', '/');
-  });
+      // Verifica se a mensagem de Boas vindas está na tela
+      cy.getByData('titulo-boas-vindas').should(
+        'contain',
+        'Bem vindo de volta!'
+      );
 
-  it.only('Deve permitir que a pessoa usuária faça um cadastro na aplicação, e logo depois faça o login', () => {
-    cy.visit('/');
-    cy.getByDataTest('botao-cadastro').click();
-    cy.getByDataTest('nome-input').type('Mario Silva');
-    cy.getByDataTest('email-input').type('mario.silva1@gmail.com');
-    cy.getByDataTest('senha-input').type('mariosilva');
-    cy.getByDataTest('checkbox-input').click();
-    cy.getByDataTest('botao-enviar').click();
+      // Seleciona o campo de select com as opções de transação
+      cy.getByData('select-opcoes').select(novaTransacao.tipoTransacao);
+      // Verifica se a opção escolhida é a que está selecionada no campo de select
+      cy.getByData('select-opcoes').should(
+        'have.value',
+        novaTransacao.tipoTransacao
+      );
 
-    cy.location('pathname').should('eq', '/');
+      // Preenche o campo de texto com o valor da nova transação
+      cy.getByData('form-input').type(novaTransacao.valor);
 
-    cy.getByDataTest('botao-login').click();
-    cy.getByDataTest('email-input').type('mario.silva1@gmail.com');
-    cy.getByDataTest('senha-input').type('mariosilva');
-    cy.getByDataTest('botao-enviar').click();
+      // Verifica se o valor no campo de input é o mesmo valor da nova transação
+      cy.getByData('form-input').should('have.value', novaTransacao.valor);
 
-    cy.location('pathname').should('eq', '/home');
+      // Clica no botão de realizar transação
+      cy.getByData('realiza-transacao').click();
+
+      // Verifica se o valor da nova transação está aparecendo na tela
+      cy.getByData('lista-transacoes')
+        .find('li')
+        .last()
+        .contains(novaTransacao.valor);
+
+      // ******TESTANDO A API******
+      // Recupera informações do localStorage
+      cy.window().then((win) => {
+        const userId = win.localStorage.getItem('userId');
+        // Faz uma requisição para a API no endpoint de transações
+        cy.request({
+          method: 'GET',
+          url: `http://localhost:8000/users/${userId}/transations`,
+          failOnStatusCode: false,
+        }).then((resposta) => {
+          expect(resposta.status).to.eq(200);
+          expect(resposta.body).is.not.empty;
+          expect(resposta.body).to.have.lengthOf.at.least(1);
+          expect(resposta.body[resposta.body.length - 1]).to.deep.include(
+            novaTransacao
+          );
+        });
+      });
+
+      // Clica no botão de sair da aplicação
+      cy.getByData('botao-sair').click();
+
+      // Verifica a url, se ela corresponde a rota de home
+      cy.url().should('include', '/');
+
+      // Faz uma asserção acerta do título da página de início
+      cy.getByData('titulo-principal').contains(
+        'Experimente mais liberdade no controle da sua vida financeira. Crie sua conta com a gente!'
+      );
+    });
   });
 });

@@ -1,0 +1,17 @@
+[
+  {
+    "nome": "Cidronio Da Silva",
+    "email": "cidronodaSilva@gmail.com",
+    "senha": "olamundo"
+  },
+  {
+    "nome": "Gui Lima",
+    "email": "gui@alura.com",
+    "senha": "guilimadev"
+  },
+  {
+    "nome": "Moni Hillman",
+    "email": "moni@alura.com",
+    "senha": "moniverso"
+  }
+]

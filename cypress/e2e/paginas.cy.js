@@ -1,17 +1,25 @@
-describe('Acessando múltiplas páginas', () => {
-  it('Acessar página principal', () => {
-    cy.visit('/');
-    cy.getByDataTest('botao-login').click();
-    cy.getByDataTest('email-input').type('emi.stutz86@gmail.com');
-    cy.getByDataTest('senha-input').type('123456');
-    cy.getByDataTest('botao-enviar').click();
-    cy.location('pathname').should('eq', '/home');
-  });
+import { isMobile } from '../support/utils';
 
-  it('Acessar página de cartões', () => {
+describe('Testando múltiplas páginas', () => {
+  it('Deve conseguir acessar a página de cartões', () => {
+    cy.login(Cypress.env('email'), Cypress.env('senha'));
+
     cy.visit('/home');
-    cy.getByDataTest('app-home').find('a').eq(1).click();
-    cy.url().should('include', '/cartoes');
+
+    cy.location('pathname').should('eq', '/home');
+
+    if (isMobile()) {
+      cy.getByData('menu-burguer').should('be.visible');
+      cy.getByData('menu-burguer').click();
+      cy.getByData('menu-lateral').find('a').eq(2).click();
+    } else {
+      cy.getByData('app-home').find('a').eq(2).click();
+    }
+
+    cy.getByData('titulo-cartoes')
+      .should('exist')
+      .and('have.text', 'Meus cartões');
+
     cy.location('pathname').should('eq', '/home/cartoes');
   });
 });
