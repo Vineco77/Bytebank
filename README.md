@@ -11,7 +11,7 @@ Digital bank, where you will have the history of all transactions and control yo
 #### Link to the Website 🎯
 
 <div>
-    <a href="https://bytebank-type-script.vercel.app" target="_blank"><img src="https://img.shields.io/badge/website-000000?style=for-the-badge&logo=About.me&logoColor=white" target="_blank"></a>
+    <a href="https://bytebank-sooty.vercel.app" target="_blank"><img src="https://img.shields.io/badge/website-000000?style=for-the-badge&logo=About.me&logoColor=white" target="_blank"></a>
 </div>
 
 #### Platform Features 🖥️
