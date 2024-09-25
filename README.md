@@ -14,6 +14,24 @@ Digital bank, where you will have the history of all transactions and control yo
     <a href="https://bytebank-type-script.vercel.app" target="_blank"><img src="https://img.shields.io/badge/website-000000?style=for-the-badge&logo=About.me&logoColor=white" target="_blank"></a>
 </div>
 
+#### Platform Features 🖥️
+
+- Homepage with information about the digital bank, with the possibility to open a free account;
+
+- After creating an account, users can log in using their registered data;
+
+- Your account will have an initial balance of R$1000, updated in real time;
+
+- Option to make Deposits and Transfers, where the user's transaction history will be recorded in the sidebar;
+
+- 'My Account' section to change registered name details;
+
+- 'Cards' section with an aesthetic focus to display platform cards;
+
+- 'Services' section with some options that the digital bank will offer;
+
+- 'Investments' section where your money will have a fixed or variable income.
+
 #### ⬇️You can reach me at⬇️
 
 <div> 
@@ -111,3 +129,37 @@ Digital bank, where you will have the history of all transactions and control yo
 - How to add a minimum coverage threshold for your tests;
 
 - How to create a GitHub action to allow pull requests to the main branch only if it meets the minimum coverage threshold.
+
+- Map out testing priorities by focusing on critical scenarios first, followed by user journey tests.
+
+- Create a custom login command to simplify tests that require user authentication.
+
+- Optimize the login process by using session storage and caching logged-in user information, decoupling tests and avoiding interdependencies.
+
+- Test the application’s API using the cy.request command.
+
+- Test API methods such as GET and POST requests.
+
+- Cover success and failure scenarios to ensure the API returns consistent data.
+
+- Use the cy.intercept command to intercept network requests during tests.
+
+- Implement stubs as responses for API interception tests.
+
+- Leverage Cypress’ test runner for an enhanced development experience.
+
+- Write integration tests between the frontend and backend, confirming that the application correctly registers a user and verifies this in the API.
+
+- Utilize the Faker.js library to generate mock users and seed test data in your applications.
+
+- Incorporate fixtures into your tests, which can store data like usernames and passwords for repeated use.
+
+- Improve user journey tests by ensuring the frontend and backend work seamlessly together.
+
+- Use the window command to access data stored in localStorage and sessionStorage.
+
+- Monitor browser events using the on command, which can track actions like console.log or alert.
+
+- Protect sensitive data in your tests with Cypress environment variables using the Cypress.env() command.
+
+- Create utility functions to check screen size and perform tests across various application breakpoints.
